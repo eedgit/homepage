@@ -33,6 +33,7 @@
 }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.65}
@@ -64,13 +65,12 @@ section{padding-block:clamp(56px,8vw,96px)}
 .hero::before{content:"";position:absolute;inset:0;background:
   radial-gradient(600px 300px at 85% 10%, #3cc4b81f, transparent 70%),
   repeating-linear-gradient(0deg, #ffffff06 0 1px, transparent 1px 28px);pointer-events:none}
-.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
-.hero-text{display:grid;gap:22px;min-width:0}
+.hero-grid{position:relative}
+.hero-text{display:grid;gap:22px;min-width:0;max-width:780px}
 .hero .eyebrow{color:var(--syn-kw)}
 .hero h1{font-size:clamp(2.6rem,6.2vw,4.6rem);font-weight:800;letter-spacing:-.02em;color:#F3F8F9}
 .hero h1 .name{color:var(--syn-kw)}
-.hero p.sub{font-size:clamp(1.1rem,1.6vw,1.3rem);color:#B9CBD0;max-width:46ch}
+.hero p.sub{font-size:clamp(1.1rem,1.6vw,1.3rem);color:#B9CBD0;max-width:54ch}
 .status{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:.85rem;color:#D3E1E4;background:#ffffff0d;border:1px solid #ffffff1f;padding:7px 14px;border-radius:999px;width:fit-content}
 .status i{width:9px;height:9px;border-radius:50%;background:#58D68D;box-shadow:0 0 0 4px #58d68d2e;flex:none}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
@@ -80,31 +80,13 @@ section{padding-block:clamp(56px,8vw,96px)}
 .btn-ghost{border-color:#ffffff40;color:#E8F1F3;background:transparent}
 .btn-ghost:hover{border-color:var(--syn-kw)}
 
-.editor{background:#0B161A;border:1px solid #ffffff1a;border-radius:var(--radius);box-shadow:0 30px 60px -20px #0009;min-width:0;overflow:hidden}
-.editor-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--code-bar);border-bottom:1px solid #ffffff12}
-.editor-bar i{width:11px;height:11px;border-radius:50%;background:#3A4E56}
-.editor-bar i:nth-child(1){background:#E0695F}.editor-bar i:nth-child(2){background:#E5B95A}.editor-bar i:nth-child(3){background:#5CC77A}
-.editor-bar span{font:.78rem var(--font-mono);color:var(--code-dim);margin-left:8px}
-.editor pre{margin:0;padding:18px 18px 22px;overflow-x:auto;font:.84rem/1.75 var(--font-mono);color:var(--code-fg);counter-reset:ln}
-.editor code{display:block}
-.editor .ln{display:block}
-.editor .ln::before{counter-increment:ln;content:counter(ln);display:inline-block;width:2.2em;margin-right:1em;text-align:right;color:#3E5660}
-.k{color:var(--syn-kw)}.s{color:var(--syn-str)}.f{color:var(--syn-fn)}.n{color:var(--syn-num)}.c{color:var(--code-dim);font-style:italic}
-.cursor{display:inline-block;width:.55em;height:1.1em;background:var(--syn-kw);vertical-align:-.18em;animation:blink 1.1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-
 .about-grid{display:grid;grid-template-columns:280px 1fr;gap:clamp(28px,5vw,64px);align-items:start}
 @media (max-width:800px){.about-grid{grid-template-columns:1fr}}
-.portrait{aspect-ratio:4/5;max-width:100%;border-radius:var(--radius);background:linear-gradient(160deg,var(--accent-soft),var(--surface));border:1px solid var(--line);display:grid;place-items:center;position:relative}
+.portrait{aspect-ratio:4/5;max-width:100%;border-radius:var(--radius);background:linear-gradient(160deg,var(--accent-soft),var(--surface));border:1px solid var(--line);display:grid;place-items:center;position:relative;overflow:hidden}
 .portrait b{font-family:var(--font-display);font-size:5rem;color:var(--accent);letter-spacing:-.03em}
-.portrait small{position:absolute;bottom:12px;left:0;right:0;text-align:center;font:.72rem var(--font-mono);color:var(--muted)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media (max-width:800px){.portrait{max-width:220px}}
 .about-text{display:grid;gap:18px;max-width:64ch;min-width:0}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px}
-@media (max-width:620px){.facts{grid-template-columns:1fr}}
-.fact{border-top:2px solid var(--accent);padding-top:12px;display:grid;gap:2px}
-.fact strong{font-family:var(--font-display);font-size:1.9rem;font-weight:800;font-variant-numeric:tabular-nums}
-.fact span{color:var(--muted);font-size:.95rem;line-height:1.4}
 
 .skills{background:var(--surface);border-block:1px solid var(--line)}
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:28px}
@@ -114,21 +96,27 @@ section{padding-block:clamp(56px,8vw,96px)}
 .tags li{font:600 .85rem var(--font-mono);padding:5px 11px;border-radius:7px;background:var(--accent-soft);color:var(--ink)}
 
 .projects{display:grid;gap:32px}
-.project{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(22px,4vw,40px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px)}
-@media (max-width:860px){.project{grid-template-columns:1fr}}
-.project-main{display:grid;gap:16px;align-content:start;min-width:0}
+.project{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(22px,4vw,40px);display:grid;gap:clamp(20px,3vw,28px)}
+.summary{display:grid;gap:14px;max-width:72ch;min-width:0}
+.tech{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,48px);border-top:1px solid var(--line);padding-top:clamp(20px,3vw,32px)}
+@media (max-width:860px){.tech{grid-template-columns:1fr}}
+.project-main{display:grid;gap:14px;align-content:start;min-width:0}
 .badge{display:inline-flex;align-items:center;gap:6px;font:600 .75rem var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--warm);border:1px solid currentColor;padding:4px 10px;border-radius:999px;width:fit-content}
 .project h3{font-size:clamp(1.4rem,2.4vw,1.8rem)}
+.tech-title{margin:0;font-family:var(--font-display);font-size:1.2rem;font-weight:700;line-height:1.2}
 .project-meta{font:.85rem var(--font-mono);color:var(--muted)}
-.endpoint{font:.85rem var(--font-mono);background:var(--code-bg);color:var(--code-fg);padding:10px 14px;border-radius:9px;overflow-x:auto;white-space:nowrap}
-.endpoint b{color:var(--syn-kw);font-weight:600}
 .project-detail{display:grid;gap:18px;align-content:start;min-width:0}
 .project-detail h4{margin:0 0 6px;font:600 .8rem var(--font-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
 .project-detail ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
 .project-detail li::marker{color:var(--accent)}
+.project-detail .tags{display:flex;padding-left:0;gap:8px}
 .project-links{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .btn-demo{display:inline-flex;align-items:center;font:700 .95rem var(--font-body);background:var(--accent);color:var(--accent-ink);text-decoration:none;padding:9px 16px;border-radius:9px}
 .btn-demo::after{content:" →";white-space:pre}
+.btn-toggle{display:inline-flex;align-items:center;gap:8px;font:700 .95rem var(--font-body);background:transparent;color:var(--ink);border:2px solid var(--line);padding:7px 14px;border-radius:9px;cursor:pointer}
+.btn-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.btn-toggle::after{content:"▾";display:inline-block;transition:transform .2s ease}
+.btn-toggle[aria-expanded="true"]::after{transform:rotate(180deg)}
 .repo-link{border-style:solid;text-decoration:none}
 .repo-link:hover{border-color:var(--accent);color:var(--accent)}
 .repo{display:inline-flex;align-items:center;gap:8px;font:600 .9rem var(--font-mono);color:var(--muted);border:1px dashed var(--line);padding:8px 14px;border-radius:9px;width:fit-content}
@@ -180,37 +168,27 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
       <div class="hero-text">
         <span class="status"><i></i><span data-i18n="hero.status">Offen für Jobangebote · Junior-Entwickler</span></span>
         <h1 id="hero-title"><span data-i18n="hero.hi">Hallo, ich bin</span> <span class="name">Eduard Jakuschin.</span></h1>
-        <p class="sub" data-i18n="hero.sub">Fachinformatiker für Anwendungsentwicklung. Ich baue Backends mit Java und Spring Boot, schreibe WordPress-Plugins in PHP und sorge im Frontend mit JavaScript dafür, dass alles schnell und zugänglich bleibt.</p>
+        <p class="sub" data-i18n="hero.sub">Fachinformatiker für Anwendungsentwicklung mit Schwerpunkt Java und Datenbanken. Ich entwickle Software, auf die sich ein Team verlassen kann: gründlich getestet und verständlich dokumentiert.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#projects" data-i18n="hero.cta1">Projekte ansehen</a>
           <a class="btn btn-ghost" href="#contact" data-i18n="hero.cta2">Kontakt aufnehmen</a>
         </div>
-      </div>
-
-      <div class="editor" aria-hidden="true">
-        <div class="editor-bar"><i></i><i></i><i></i><span>portfolio-filter/frontend.js</span></div>
-<pre><code><span class="ln"><span class="k">function</span> <span class="f">loadProjects</span>() {</span><span class="ln">  <span class="k">if</span> (state.abortController) {</span><span class="ln">    state.abortController.<span class="f">abort</span>();</span><span class="ln">  }</span><span class="ln">  state.abortController = <span class="k">new</span> <span class="f">AbortController</span>();</span><span class="ln"></span><span class="ln">  <span class="k">const</span> query = <span class="f">buildQuery</span>(state);</span><span class="ln">  <span class="k">const</span> url = endpoint + <span class="s">"?"</span> + query;</span><span class="ln"></span><span class="ln">  <span class="f">fetch</span>(url, { signal: state.abortController.signal })</span><span class="ln">    .<span class="f">then</span>((res) =&gt; res.<span class="f">json</span>())</span><span class="ln">    .<span class="f">then</span>(updateView);</span><span class="ln">}</span><span class="ln"><span class="c">// GET /wp-json/portfolio/v1/projects · per_page=<span class="n">9</span></span> <span class="cursor"></span></span></code></pre>
       </div>
     </div>
   </section>
 
   <section id="about" aria-labelledby="about-title">
     <div class="wrap about-grid">
-      <div class="portrait" role="img" aria-label="Platzhalter für ein Foto von Eduard Jakuschin">
+      <div class="portrait" aria-hidden="true">
+        <!-- Foto einsetzen: <b>EJ</b> durch <img src="foto.jpg" alt="Eduard Jakuschin"> ersetzen und oben aria-hidden="true" entfernen. -->
         <b>EJ</b>
-        <small data-i18n="about.photo">Platz für dein Foto</small>
       </div>
       <div class="about-text">
         <span class="eyebrow" data-i18n="about.eyebrow">Über mich</span>
         <h2 id="about-title" data-i18n="about.title">Frisch ausgelernt und bereit für das erste Team.</h2>
-        <p data-i18n="about.p1">Ich habe meine Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der IHK Halle-Dessau abgeschlossen. Gelernt habe ich in einer Kreativ- und Digitalagentur. Dort habe ich echte Kundenprojekte von der Anforderung bis zum Go-live begleitet.</p>
-        <p data-i18n="about.p2">Am meisten Spaß macht mir die Stelle, an der Backend und Frontend zusammenkommen: eine saubere REST-API entwerfen, die Daten schlank halten und dafür sorgen, dass die Oberfläche schnell reagiert und auch mit Tastatur und Screenreader funktioniert.</p>
-        <p data-i18n="about.p3">Jetzt suche ich meinen Einstieg als Junior-Entwickler in einem Team, in dem ich Verantwortung übernehmen und von erfahrenen Kolleginnen und Kollegen lernen kann.</p>
-        <div class="facts">
-          <div class="fact"><strong>80 h</strong><span data-i18n="about.f1">IHK-Abschlussprojekt, eigenständig geplant und umgesetzt</span></div>
-          <div class="fact"><strong>0</strong><span data-i18n="about.f2">Mängel bei der Abnahme durch den Auftraggeber</span></div>
-          <div class="fact"><strong>≤ 250 ms</strong><span data-i18n="about.f3">Ziel-Antwortzeit (Median) für die Filter-API</span></div>
-        </div>
+        <p data-i18n="about.p1">Ich bin Fachinformatiker für Anwendungsentwicklung. In einer Digitalagentur habe ich echte Kundenprojekte von der ersten Idee bis zum fertigen Produkt begleitet. Dabei habe ich gelernt, genau zu verstehen, was ein Kunde braucht, und daraus eine Lösung zu machen, die im Alltag funktioniert.</p>
+        <p data-i18n="about.p2">Am liebsten entwickle ich Anwendungen mit Java und arbeite mit Datenbanken (SQL). Mir ist wichtig, dass Software zuverlässig läuft. Deshalb teste ich gründlich und dokumentiere meine Arbeit so, dass andere jederzeit daran anknüpfen können.</p>
+        <p data-i18n="about.p3">Jetzt suche ich meinen Einstieg als Junior-Entwickler, am liebsten dort, wo Software die Abläufe in Unternehmen einfacher macht. In meinen Projekten habe ich mit mehreren Programmiersprachen gearbeitet, und neue lerne ich gern dazu. Ich freue mich auf eine gute Einarbeitung, ehrliches Feedback und darauf, Schritt für Schritt mehr Verantwortung zu übernehmen.</p>
       </div>
     </div>
   </section>
@@ -220,14 +198,13 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
       <div class="section-head">
         <span class="eyebrow" data-i18n="skills.eyebrow">Skills</span>
         <h2 id="skills-title" data-i18n="skills.title">Womit ich arbeite</h2>
-        <p class="lead" data-i18n="skills.lead">Technologien, die ich in meinen Projekten produktiv eingesetzt habe.</p>
+        <p class="lead" data-i18n="skills.lead">Technologien, mit denen ich in meinen Projekten gearbeitet habe.</p>
       </div>
       <div class="skill-grid">
-        <div class="skill-group"><h3>Backend</h3><ul class="tags"><li>Java 21</li><li>Spring Boot</li><li>Spring Security</li><li>Spring Data JPA</li><li>Hibernate</li><li>PHP 8.3</li></ul></div>
-        <div class="skill-group"><h3>Frontend</h3><ul class="tags"><li>JavaScript</li><li>Fetch API</li><li>React</li><li>HTML</li><li>CSS / SASS</li></ul></div>
-        <div class="skill-group"><h3 data-i18n="skills.data">Daten &amp; APIs</h3><ul class="tags"><li>REST</li><li>JSON</li><li>MySQL</li><li>WP_Query</li></ul></div>
-        <div class="skill-group"><h3 data-i18n="skills.tools">Qualität &amp; Werkzeuge</h3><ul class="tags"><li>Git / GitHub</li><li>JUnit 5</li><li>Mockito</li><li>PHPUnit</li><li>Maven</li><li>Composer</li></ul></div>
-        <div class="skill-group"><h3>CMS</h3><ul class="tags"><li>WordPress</li><li>ACF</li><li>Divi 5</li></ul></div>
+        <div class="skill-group"><h3>Backend</h3><ul class="tags"><li>Java</li><li>Spring Boot</li><li>Hibernate</li><li>PHP</li></ul></div>
+        <div class="skill-group"><h3 data-i18n="skills.db">Datenbanken</h3><ul class="tags"><li>SQL</li><li>MySQL</li></ul></div>
+        <div class="skill-group"><h3>Frontend</h3><ul class="tags"><li>JavaScript</li><li>React</li><li>HTML</li><li>CSS</li></ul></div>
+        <div class="skill-group"><h3 data-i18n="skills.tools">Werkzeuge</h3><ul class="tags"><li>Git / GitHub</li><li>JUnit</li><li>Maven</li><li>WordPress</li></ul></div>
       </div>
     </div>
   </section>
@@ -237,66 +214,84 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
       <div class="section-head">
         <span class="eyebrow" data-i18n="projects.eyebrow">Projekte</span>
         <h2 id="projects-title" data-i18n="projects.title">Ausgewählte Arbeiten</h2>
-        <p class="lead" data-i18n="projects.lead">Zwei Projekte, die zeigen, wie ich an Backend, Frontend und Qualität herangehe.</p>
+        <p class="lead" data-i18n="projects.lead">Zwei Projekte, die zeigen, wie ich arbeite: von der ersten Planung bis zum fertigen Ergebnis.</p>
       </div>
 
       <div class="projects">
-        <article class="project">
-          <div class="project-main">
-            <span class="badge" data-i18n="p1.badge">IHK-Abschlussprojekt</span>
-            <h3 data-i18n="p1.title">Website-Relaunch mit eigenem Portfolio-Filter-Modul</h3>
-            <p class="project-meta">WordPress 6.8.3 · PHP 8.3 · JavaScript</p>
-            <p data-i18n="p1.desc">Die statisch gepflegte, nicht responsive Agentur-Website habe ich auf WordPress migriert und dafür ein eigenes Plugin entwickelt: Besucher filtern Referenzprojekte nach Typ, Branche und Technologie, und die Ergebnisse aktualisieren sich ohne Seitenreload.</p>
-            <div class="endpoint"><b>GET</b> /wp-json/portfolio/v1/projects?typ[]=…&amp;sort=date</div>
+        <article class="project" aria-labelledby="s1-title">
+          <div class="summary">
+            <span class="badge" data-i18n="s1.badge">Projekt mit Live-Demo</span>
+            <h3 id="s1-title" data-i18n="s1.title">Filtermodul für Referenzprojekte</h3>
+            <p data-i18n="s1.p1">Ausgangspunkt war ein typischer Fall aus dem Agenturalltag: Eine Website soll ihre Referenzprojekte so zeigen, dass Besucher schnell finden, was sie interessiert. Dafür habe ich ein Filtermodul entwickelt, mit dem Besucher die Projekte nach Art, Branche und Technologie eingrenzen können. Die Ergebnisse erscheinen sofort, ohne dass die Seite neu lädt, und alles funktioniert auch auf dem Handy.</p>
+            <p data-i18n="s1.p2">Zuerst habe ich festgelegt, was das Modul können muss, und daraus einen Zeitplan erstellt. Danach habe ich in kleinen Schritten gearbeitet und jeden Zwischenstand getestet. Zum Abschluss habe ich eine Anleitung für die Redaktion und eine für künftige Entwickler geschrieben. Das fertige Modul können Sie in der Live-Demo selbst ausprobieren.</p>
             <div class="project-links">
               <a class="btn-demo" href="portfolio-filter/" data-i18n="p1.demo">Live-Demo ansehen</a>
-              <a class="repo repo-link" href="https://github.com/eedgit/homepage/tree/main/portfolio-filter" data-i18n="p1.code">Code auf GitHub</a>
+              <button type="button" class="btn-toggle" aria-expanded="false" aria-controls="p1-tech" hidden>Technische Details ansehen</button>
             </div>
           </div>
-          <div class="project-detail">
-            <div>
-              <h4 data-i18n="label.impl">Umsetzung</h4>
-              <ul>
-                <li data-i18n="p1.i1">Custom Post Type „Projekte“ mit Taxonomien und ACF-Feldern</li>
-                <li data-i18n="p1.i2">REST-Controller mit WP_Query, validierten Parametern und schlanken JSON-Antworten</li>
-                <li data-i18n="p1.i3">Filterlogik im Client mit Fetch API, Debounce und AbortController</li>
-                <li data-i18n="p1.i4">Pagination, Sortierung, leere Zustände und Object-Cache</li>
-                <li data-i18n="p1.i5">Barrierearm: Tastaturbedienung und aria-live-Ansage der Trefferzahl</li>
-              </ul>
+          <div class="tech" id="p1-tech">
+            <div class="project-main">
+              <h4 class="tech-title" data-i18n="p1.title">Portfolio-Filter-Modul für WordPress</h4>
+              <p class="project-meta">WordPress 6.8.3 · PHP 8.3 · JavaScript</p>
+              <p data-i18n="p1.desc">Ausgangslage war eine statisch gepflegte, nicht responsive Agentur-Website. Dafür habe ich ein WordPress-Plugin entwickelt: Besucher filtern Referenzprojekte nach Typ, Branche und Technologie, und die Ergebnisse aktualisieren sich ohne Seitenreload.</p>
+              <div class="project-links">
+                <a class="repo repo-link" href="https://github.com/eedgit/homepage/tree/main/portfolio-filter" data-i18n="p1.code">Code auf GitHub</a>
+              </div>
             </div>
-            <div>
-              <h4 data-i18n="label.result">Ergebnis</h4>
-              <p data-i18n="p1.result">Erfolgreicher Relaunch, Abnahme ohne Mängel. Tests für Filterung, Pagination, Sortierung, Responsivität und Performance bestanden. Dazu ein Entwickler-Leitfaden und eine Redaktionsanleitung.</p>
+            <div class="project-detail">
+              <div>
+                <h4 data-i18n="label.impl">Umsetzung</h4>
+                <ul>
+                  <li data-i18n="p1.i1">Custom Post Type „Projekte“ mit Taxonomien und ACF-Feldern</li>
+                  <li data-i18n="p1.i2">REST-Controller mit WP_Query, validierten Parametern und schlanken JSON-Antworten</li>
+                  <li data-i18n="p1.i3">Filterlogik im Client mit Fetch API, Debounce und AbortController</li>
+                  <li data-i18n="p1.i4">Pagination, Sortierung, leere Zustände und Object-Cache</li>
+                  <li data-i18n="p1.i5">Barrierearm: Tastaturbedienung und aria-live-Ansage der Trefferzahl</li>
+                </ul>
+              </div>
+              <div>
+                <h4 data-i18n="label.result">Ergebnis</h4>
+                <p data-i18n="p1.result">Alle Tests für Filterung, Pagination, Sortierung, Responsivität und Performance bestanden. Dazu ein Entwickler-Leitfaden und eine Redaktionsanleitung.</p>
+              </div>
+              <ul class="tags"><li>WordPress</li><li>PHP</li><li>JavaScript</li><li>REST API</li><li>ACF</li><li>React</li><li>PHPUnit</li></ul>
             </div>
-            <ul class="tags"><li>WordPress</li><li>PHP</li><li>JavaScript</li><li>REST API</li><li>ACF</li><li>React</li><li>PHPUnit</li></ul>
           </div>
         </article>
 
-        <article class="project">
-          <div class="project-main">
-            <span class="badge" data-i18n="p2.badge">Backend-Projekt</span>
-            <h3 data-i18n="p2.title">Login-System mit Spring Boot</h3>
-            <p class="project-meta">Java 21 · Spring Boot · MySQL</p>
-            <p data-i18n="p2.desc">Ein Login-Backend mit REST-Schnittstelle, sicherer Passwortspeicherung und klarer Schichtentrennung. Gebaut so, dass es sich leicht um weitere Funktionen erweitern lässt.</p>
-            <div class="endpoint"><b>Controller</b> → <b>Service</b> → <b>Repository</b> → MySQL</div>
-            <span class="repo" data-i18n="repo.soon">Code auf GitHub · folgt in Kürze</span>
+        <article class="project" aria-labelledby="s2-title">
+          <div class="summary">
+            <span class="badge" data-i18n="s2.badge">Eigenes Projekt</span>
+            <h3 id="s2-title" data-i18n="s2.title">Sichere Anmeldung mit Java</h3>
+            <p data-i18n="s2.p1">Dieses Projekt habe ich aus eigener Initiative umgesetzt. Fast jede Anwendung braucht eine Anmeldung, und gerade dort zählt Sicherheit. Deshalb habe ich mit Java ein Login-System entwickelt.</p>
+            <p data-i18n="s2.p2">Ich habe mit einem lauffähigen Kern begonnen und ihn Schritt für Schritt erweitert. Passwörter werden nicht im Klartext gespeichert, und fehlerhafte Eingaben erkennt das System und gibt eine klare Rückmeldung. Die Anwendung ist in klar getrennte Bausteine aufgeteilt, damit sie sich später leicht um neue Funktionen erweitern lässt. Automatische Tests stellen sicher, dass alles auch nach Änderungen noch funktioniert.</p>
+            <div class="project-links">
+              <button type="button" class="btn-toggle" aria-expanded="false" aria-controls="p2-tech" hidden>Technische Details ansehen</button>
+            </div>
           </div>
-          <div class="project-detail">
-            <div>
-              <h4 data-i18n="label.impl">Umsetzung</h4>
-              <ul>
-                <li data-i18n="p2.i1">REST-API mit Spring MVC für Login-Anfragen</li>
-                <li data-i18n="p2.i2">Geschäftslogik in Service-Klassen, Persistenz mit Spring Data JPA und Hibernate</li>
-                <li data-i18n="p2.i3">Passwörter mit BCrypt gehasht, Authentifizierung über Spring Security</li>
-                <li data-i18n="p2.i4">Eingabevalidierung mit Jakarta Validation und passenden HTTP-Statuscodes</li>
-                <li data-i18n="p2.i5">Tests mit JUnit 5 und Mockito</li>
-              </ul>
+          <div class="tech" id="p2-tech">
+            <div class="project-main">
+              <h4 class="tech-title" data-i18n="p2.title">Login-System mit Spring Boot</h4>
+              <p class="project-meta">Java 21 · Spring Boot · MySQL</p>
+              <p data-i18n="p2.desc">Ein Login-Backend mit REST-Schnittstelle, sicherer Passwortspeicherung und klarer Schichtentrennung. Gebaut so, dass es sich leicht um weitere Funktionen erweitern lässt.</p>
+              <span class="repo" data-i18n="repo.soon">Code auf GitHub · folgt in Kürze</span>
             </div>
-            <div>
-              <h4 data-i18n="label.result">Ergebnis</h4>
-              <p data-i18n="p2.result">Ein funktionsfähiges Login-Backend mit Datenbankanbindung, sauber getrennten Schichten und sicherer Authentifizierung.</p>
+            <div class="project-detail">
+              <div>
+                <h4 data-i18n="label.impl">Umsetzung</h4>
+                <ul>
+                  <li data-i18n="p2.i1">REST-API mit Spring MVC für Login-Anfragen</li>
+                  <li data-i18n="p2.i2">Geschäftslogik in Service-Klassen, Persistenz mit Spring Data JPA und Hibernate</li>
+                  <li data-i18n="p2.i3">Passwörter mit BCrypt gehasht, Authentifizierung über Spring Security</li>
+                  <li data-i18n="p2.i4">Eingabevalidierung mit Jakarta Validation und passenden HTTP-Statuscodes</li>
+                  <li data-i18n="p2.i5">Tests mit JUnit 5 und Mockito</li>
+                </ul>
+              </div>
+              <div>
+                <h4 data-i18n="label.result">Ergebnis</h4>
+                <p data-i18n="p2.result">Ein funktionsfähiges Login-Backend mit Datenbankanbindung, sauber getrennten Schichten und sicherer Authentifizierung.</p>
+              </div>
+              <ul class="tags"><li>Java 21</li><li>Spring Boot</li><li>Spring Security</li><li>JPA</li><li>MySQL</li><li>Maven</li><li>JUnit 5</li></ul>
             </div>
-            <ul class="tags"><li>Java 21</li><li>Spring Boot</li><li>Spring Security</li><li>JPA</li><li>MySQL</li><li>Maven</li><li>JUnit 5</li></ul>
           </div>
         </article>
       </div>
@@ -310,10 +305,10 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
         <h2 id="approach-title" data-i18n="approach.title">Was mir beim Entwickeln wichtig ist</h2>
       </div>
       <div class="approach">
-        <div><code>01 · iterate()</code><h3 data-i18n="a1.t">Klein anfangen, oft prüfen</h3><p data-i18n="a1.p">Erst ein lauffähiger Kern, dann Schritt für Schritt erweitern. Jede Iteration endet mit Review und Test.</p></div>
-        <div><code>02 · test()</code><h3 data-i18n="a2.t">Tests gehören dazu</h3><p data-i18n="a2.p">Unit-Tests mit JUnit oder PHPUnit und klare Abnahmekriterien geben mir die Sicherheit, Code auch später noch umbauen zu können.</p></div>
-        <div><code>03 · a11y()</code><h3 data-i18n="a3.t">Für alle Nutzer bauen</h3><p data-i18n="a3.p">Tastaturbedienung, sichtbarer Fokus und Screenreader-Ansagen plane ich von Anfang an mit ein, nicht erst am Schluss.</p></div>
-        <div><code>04 · docs()</code><h3 data-i18n="a4.t">Verständlich dokumentieren</h3><p data-i18n="a4.p">Ein guter Leitfaden spart dem nächsten Entwickler Stunden. Deshalb schreibe ich Dokumentation für Entwickler und Redaktion.</p></div>
+        <div><code>01 · understand()</code><h3 data-i18n="a1.t">Erst verstehen, dann programmieren</h3><p data-i18n="a1.p">Bevor ich die erste Zeile schreibe, kläre ich, was die Anwendung wirklich leisten soll. Wenn etwas unklar ist, frage ich nach, denn eine gute Lösung beginnt mit dem richtigen Verständnis der Aufgabe.</p></div>
+        <div><code>02 · iterate()</code><h3 data-i18n="a2.t">Klein anfangen, oft prüfen</h3><p data-i18n="a2.p">Ich plane meine Arbeit in überschaubaren Schritten: erst ein funktionierender Kern, dann Stück für Stück mehr. So bleibt der Fortschritt sichtbar, und Probleme fallen früh auf.</p></div>
+        <div><code>03 · test()</code><h3 data-i18n="a3.t">Tests gehören dazu</h3><p data-i18n="a3.p">Ich prüfe meine Arbeit mit automatischen Tests. Das gibt mir und dem Team die Sicherheit, dass alles auch nach Änderungen noch funktioniert. Wenn doch etwas hakt, suche ich die Ursache, statt nur das Symptom zu beheben.</p></div>
+        <div><code>04 · docs()</code><h3 data-i18n="a4.t">Verständlich dokumentieren</h3><p data-i18n="a4.p">Ein guter Leitfaden spart dem nächsten Entwickler Stunden. Deshalb halte ich fest, was ich gebaut und geändert habe, für Entwickler genauso wie für die Menschen, die später mit der Anwendung arbeiten.</p></div>
       </div>
     </div>
   </section>
@@ -322,7 +317,8 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
     <div class="wrap contact-inner">
       <span class="eyebrow" style="color:var(--syn-kw)" data-i18n="contact.eyebrow">Kontakt</span>
       <h2 id="contact-title" data-i18n="contact.title">Lassen Sie uns sprechen.</h2>
-      <p class="lead" data-i18n="contact.lead">Sie suchen einen motivierten Junior-Entwickler für Java, PHP oder Web? Ich freue mich über Ihre Nachricht und schicke Ihnen gern meine vollständigen Bewerbungsunterlagen.</p>
+      <p class="lead" data-i18n="contact.lead">Sie suchen einen Junior-Entwickler für Java und Datenbanken, der Aufgaben gründlich versteht, sorgfältig testet und gern dazulernt? Dann freue ich mich über Ihre Nachricht. Meinen Lebenslauf und meine Zeugnisse schicke ich Ihnen gern zu.</p>
+      <span class="status"><i></i><span data-i18n="contact.avail">Verfügbar ab sofort · offen für hybrides Arbeiten und einen Umzug</span></span>
       <div class="mail-box">
         <a class="mail" id="mail" href="mailto:kontakt@jakuschin.de">kontakt@jakuschin.de</a>
         <button type="button" class="copy-btn" id="copy-mail" data-i18n="contact.copy">Adresse kopieren</button>
@@ -368,25 +364,29 @@ const T = {
     "nav.about":"About","nav.skills":"Skills","nav.projects":"Projects","nav.contact":"Contact",
     "hero.status":"Open to job offers · Junior developer",
     "hero.hi":"Hi, I'm",
-    "hero.sub":"Qualified software developer (IHK). I build backends with Java and Spring Boot, write WordPress plugins in PHP, and use JavaScript to keep the frontend fast and accessible.",
+    "hero.sub":"Qualified software developer focused on Java and databases. I build software a team can rely on: thoroughly tested and clearly documented.",
     "hero.cta1":"View projects","hero.cta2":"Get in touch",
-    "about.photo":"Room for your photo",
     "about.eyebrow":"About me",
     "about.title":"Freshly qualified and ready for my first team.",
-    "about.p1":"I completed my vocational training as a software developer (Fachinformatiker für Anwendungsentwicklung) at the IHK Halle-Dessau. I trained at a creative and digital agency, where I worked on real client projects from requirements to go-live.",
-    "about.p2":"What I enjoy most is the point where backend and frontend meet: designing a clean REST API, keeping the data lean, and making sure the interface responds quickly and works with keyboard and screen reader.",
-    "about.p3":"I'm now looking for my first role as a junior developer in a team where I can take on responsibility and learn from experienced colleagues.",
-    "about.f1":"Final IHK project, planned and delivered on my own",
-    "about.f2":"Defects found at client acceptance",
-    "about.f3":"Target response time (median) for the filter API",
+    "about.p1":"I'm a qualified software developer (Fachinformatiker für Anwendungsentwicklung). At a digital agency, I worked on real client projects from the first idea to the finished product. There I learned to understand exactly what a client needs and to turn it into a solution that works in everyday use.",
+    "about.p2":"I most enjoy building applications with Java and working with databases (SQL). It matters to me that software runs reliably. That's why I test thoroughly and document my work so that others can pick it up at any time.",
+    "about.p3":"I'm now looking for my first role as a junior developer, ideally where software makes business processes simpler. I've worked with several programming languages in my projects and enjoy learning new ones. I look forward to good onboarding, honest feedback and taking on more responsibility step by step.",
     "skills.eyebrow":"Skills","skills.title":"What I work with",
-    "skills.lead":"Technologies I have used in production in my projects.",
-    "skills.data":"Data & APIs","skills.tools":"Quality & tools",
+    "skills.lead":"Technologies I have worked with in my projects.",
+    "skills.db":"Databases","skills.tools":"Tools",
     "projects.eyebrow":"Projects","projects.title":"Selected work",
-    "projects.lead":"Two projects that show how I approach backend, frontend and quality.",
-    "p1.badge":"Final IHK project",
-    "p1.title":"Website relaunch with a custom portfolio filter module",
-    "p1.desc":"I migrated the agency's static, non-responsive website to WordPress and built a custom plugin for it: visitors filter reference projects by type, industry and technology, and the results update without a page reload.",
+    "projects.lead":"Two projects that show how I work: from the first plan to the finished result.",
+    "s1.badge":"Project with live demo",
+    "s1.title":"Filter module for reference projects",
+    "s1.p1":"The starting point was a typical agency scenario: a website should present its reference projects so that visitors quickly find what interests them. For this I built a filter module that lets visitors narrow down the projects by type, industry and technology. Results appear instantly without reloading the page, and everything works on mobile too.",
+    "s1.p2":"First I defined what the module needed to do and drew up a schedule from that. Then I worked in small steps and tested every interim version. Finally, I wrote one guide for editors and one for future developers. You can try the finished module yourself in the live demo.",
+    "s2.badge":"Own project",
+    "s2.title":"Secure login with Java",
+    "s2.p1":"I built this project on my own initiative. Almost every application needs a login, and that is exactly where security matters. So I developed a login system with Java.",
+    "s2.p2":"I started with a working core and extended it step by step. Passwords are never stored in plain text, and the system detects invalid input and responds with clear feedback. The application is split into clearly separated building blocks so that new features can easily be added later. Automated tests make sure everything still works after changes.",
+    "proj.more":"Show technical details","proj.less":"Hide technical details",
+    "p1.title":"Portfolio filter module for WordPress",
+    "p1.desc":"The starting point was a manually maintained, non-responsive agency website. For it I developed a WordPress plugin: visitors filter reference projects by type, industry and technology, and the results update without a page reload.",
     "repo.soon":"Code on GitHub · coming soon",
     "p1.demo":"View live demo","p1.code":"Code on GitHub",
     "label.impl":"Implementation","label.result":"Result",
@@ -395,8 +395,7 @@ const T = {
     "p1.i3":"Client-side filter logic with the Fetch API, debounce and AbortController",
     "p1.i4":"Pagination, sorting, empty states and object cache",
     "p1.i5":"Accessible: keyboard navigation and aria-live announcement of the result count",
-    "p1.result":"Successful relaunch, accepted with no defects. Tests for filtering, pagination, sorting, responsiveness and performance passed. Delivered with a developer guide and an editor manual.",
-    "p2.badge":"Backend project",
+    "p1.result":"All tests for filtering, pagination, sorting, responsiveness and performance passed. Delivered with a developer guide and an editor manual.",
     "p2.title":"Login system with Spring Boot",
     "p2.desc":"A login backend with a REST interface, secure password storage and clear separation of layers, built so it can easily be extended with more features.",
     "p2.i1":"REST API with Spring MVC for login requests",
@@ -406,12 +405,13 @@ const T = {
     "p2.i5":"Tests with JUnit 5 and Mockito",
     "p2.result":"A working login backend with database connection, cleanly separated layers and secure authentication.",
     "approach.eyebrow":"How I work","approach.title":"What matters to me when I build software",
-    "a1.t":"Start small, check often","a1.p":"First a working core, then extend it step by step. Every iteration ends with a review and a test.",
-    "a2.t":"Tests are part of the job","a2.p":"Unit tests with JUnit or PHPUnit and clear acceptance criteria let me refactor code with confidence later on.",
-    "a3.t":"Build for every user","a3.p":"I plan keyboard navigation, visible focus and screen reader announcements from the start, not as an afterthought.",
-    "a4.t":"Document clearly","a4.p":"A good guide saves the next developer hours, so I write documentation for developers and editors alike.",
+    "a1.t":"Understand first, then code","a1.p":"Before I write the first line, I clarify what the application really needs to do. If something is unclear, I ask, because a good solution starts with understanding the task correctly.",
+    "a2.t":"Start small, check often","a2.p":"I plan my work in manageable steps: first a working core, then more piece by piece. That keeps progress visible and brings problems to light early.",
+    "a3.t":"Tests are part of the job","a3.p":"I check my work with automated tests. That gives me and the team confidence that everything still works after changes. If something does go wrong, I look for the cause instead of just fixing the symptom.",
+    "a4.t":"Document clearly","a4.p":"A good guide saves the next developer hours. That's why I record what I have built and changed, for developers as well as for the people who will work with the application later.",
     "contact.eyebrow":"Contact","contact.title":"Let's talk.",
-    "contact.lead":"Looking for a motivated junior developer for Java, PHP or web? I look forward to your message and will gladly send you my full application documents.",
+    "contact.lead":"Looking for a junior developer for Java and databases who understands tasks thoroughly, tests carefully and enjoys learning? I look forward to your message and will gladly send you my CV and certificates.",
+    "contact.avail":"Available immediately · open to hybrid work and relocation",
     "contact.copy":"Copy address","contact.copied":"Address copied.","contact.select":"Address selected. Press Ctrl+C to copy.",
     "foot.privacy":"Privacy","foot.privacyTitle":"Privacy policy"
   }
@@ -420,8 +420,15 @@ T.de = {};
 document.querySelectorAll("[data-i18n]").forEach(el => { T.de[el.dataset.i18n] = el.textContent; });
 T.de["contact.copied"] = "Adresse kopiert.";
 T.de["contact.select"] = "Adresse markiert. Mit Strg+C kopieren.";
+T.de["proj.more"] = "Technische Details ansehen";
+T.de["proj.less"] = "Technische Details ausblenden";
 
 let lang = "de";
+function labelToggles(){
+  document.querySelectorAll(".btn-toggle").forEach(b => {
+    b.textContent = T[lang][b.getAttribute("aria-expanded") === "true" ? "proj.less" : "proj.more"];
+  });
+}
 function setLang(l){
   lang = l;
   document.documentElement.lang = l;
@@ -431,9 +438,26 @@ function setLang(l){
   });
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
   document.getElementById("copy-note").textContent = "";
+  labelToggles();
   try { localStorage.setItem("lang", l); } catch(e) {}
 }
 document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+
+/* Technische Details: ohne JavaScript bleiben sie sichtbar, mit JavaScript klappen sie per Button auf */
+document.querySelectorAll(".btn-toggle").forEach(b => {
+  const panel = document.getElementById(b.getAttribute("aria-controls"));
+  if (!panel) return;
+  panel.hidden = true;
+  b.setAttribute("aria-expanded", "false");
+  b.hidden = false;
+  b.addEventListener("click", () => {
+    const open = b.getAttribute("aria-expanded") !== "true";
+    b.setAttribute("aria-expanded", String(open));
+    panel.hidden = !open;
+    labelToggles();
+  });
+});
+labelToggles();
 
 let saved = null;
 try { saved = localStorage.getItem("lang"); } catch(e) {}
