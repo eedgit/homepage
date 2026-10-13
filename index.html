@@ -136,8 +136,13 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;color:var(--muted);font-size:.95rem}
 .foot nav{display:flex;gap:20px}
 .legal{display:grid;gap:14px;margin-top:28px}
-.legal details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.legal details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px;scroll-margin-top:84px}
 .legal summary{cursor:pointer;font-weight:700;font-family:var(--font-display)}
+.legal details[open] > summary{position:sticky;top:calc(env(safe-area-inset-top,0px) + 65px);z-index:5;background:var(--surface);margin:-16px -20px 0;padding:16px 20px 12px;border-bottom:1px solid var(--line);border-radius:12px 12px 0 0}
+.sum-close{float:right;font:600 .9rem var(--font-body);color:var(--accent)}
+.legal details:not([open]) .sum-close{display:none}
+.legal-close{justify-self:start;margin-top:8px;font:700 .95rem var(--font-body);background:transparent;color:var(--ink);border:2px solid var(--line);padding:7px 14px;border-radius:9px;cursor:pointer}
+.legal-close:hover{border-color:var(--accent);color:var(--accent)}
 .legal .body{display:grid;gap:10px;margin-top:12px;color:var(--ink);font-size:.98rem;max-width:68ch}
 .legal-lang{display:grid;gap:10px}
 .legal .body h3{font-size:1.15rem;margin-top:14px}
@@ -344,7 +349,7 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
 
     <div class="legal">
       <details id="impressum">
-        <summary data-i18n="foot.imprint">Impressum</summary>
+        <summary><span data-i18n="foot.imprint">Impressum</span><span class="sum-close" data-i18n="legal.close" aria-hidden="true">Zuklappen</span></summary>
         <div class="body">
           <div class="legal-lang" data-lang-block="de" lang="de">
             <p><strong>Angaben gemäß § 5 DDG</strong></p>
@@ -361,10 +366,11 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
             <p><strong>Responsible for the content pursuant to § 18(2) MStV (German Interstate Media Treaty)</strong><br>Eduard Jakuschin, address as above</p>
             <p>Source: <a href="https://www.e-recht24.de/impressum-generator.html">https://www.e-recht24.de/impressum-generator.html</a></p>
           </div>
+          <button type="button" class="legal-close" data-i18n="legal.closeBtn">Zuklappen ↑</button>
         </div>
       </details>
       <details id="datenschutz">
-        <summary data-i18n="foot.privacyTitle">Datenschutzerklärung</summary>
+        <summary><span data-i18n="foot.privacyTitle">Datenschutzerklärung</span><span class="sum-close" data-i18n="legal.close" aria-hidden="true">Zuklappen</span></summary>
         <div class="body">
           <div class="legal-lang" data-lang-block="de" lang="de">
             <h3>1. Datenschutz auf einen Blick</h3>
@@ -516,6 +522,7 @@ footer{padding-block:40px 56px;border-top:1px solid var(--line)}
             <p>The data you send to us via contact requests remains with us until you ask us to delete it, revoke your consent to its storage or the purpose for storing the data no longer applies (e.g. after your request has been processed). Mandatory statutory provisions – in particular statutory retention periods – remain unaffected.</p>
             <p>Source: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a></p>
           </div>
+          <button type="button" class="legal-close" data-i18n="legal.closeBtn">Zuklappen ↑</button>
         </div>
       </details>
     </div>
@@ -578,6 +585,7 @@ const T = {
     "contact.lead":"Looking for a junior developer for Java and databases who understands tasks thoroughly, tests carefully and enjoys learning? I look forward to your message and will gladly send you my CV and certificates.",
     "contact.avail":"Available immediately · open to hybrid work and relocation",
     "contact.copy":"Copy address","contact.copied":"Address copied.","contact.select":"Address selected. Press Ctrl+C to copy.",
+    "legal.close":"Close","legal.closeBtn":"Close ↑",
     "foot.imprint":"Legal notice","foot.privacy":"Privacy","foot.privacyTitle":"Privacy policy"
   }
 };
@@ -640,6 +648,14 @@ document.querySelectorAll('.foot a[href^="#"]').forEach(a => a.addEventListener(
   if (d) d.open = true;
 }));
 window.addEventListener("hashchange", openLegal); openLegal();
+
+/* Button am Ende von Impressum/Datenschutz: zuklappen und zurück zum Anfang des Abschnitts */
+document.querySelectorAll(".legal-close").forEach(btn => btn.addEventListener("click", () => {
+  const d = btn.closest("details");
+  d.open = false;
+  d.scrollIntoView({ block: "start" });
+  d.querySelector("summary").focus({ preventScroll: true });
+}));
 
 document.getElementById("copy-mail").addEventListener("click", () => {
   const note = document.getElementById("copy-note");
