@@ -3,7 +3,7 @@
     de: {
       back: "Zurück zu jakuschin.de",
       eyebrow: "Live-Demo",
-      intro: "Projekte nach Typ, Branche und Technologie filtern, durchsuchen und sortieren, ohne dass die Seite neu lädt. Eine eigenständige Neuumsetzung meines IHK-Abschlussprojekts in reinem JavaScript, ohne WordPress.",
+      intro: "Projekte nach Typ, Branche und Technologie filtern, durchsuchen und sortieren, ohne dass die Seite neu lädt. Eine eigenständige Neuumsetzung meines Filtermoduls in reinem JavaScript, ohne WordPress.",
       sample: "Alle Projekte sind fiktive Beispieldaten.",
       searchLabel: "Suche",
       searchPlaceholder: "z. B. Hotel, Buchung, Plugin",
@@ -40,7 +40,7 @@
     en: {
       back: "Back to jakuschin.de",
       eyebrow: "Live demo",
-      intro: "Filter, search and sort projects by type, industry and technology without a page reload. A standalone rebuild of my final IHK project in plain JavaScript, without WordPress.",
+      intro: "Filter, search and sort projects by type, industry and technology without a page reload. A standalone rebuild of my filter module in plain JavaScript, without WordPress.",
       sample: "All projects are fictional sample data.",
       searchLabel: "Search",
       searchPlaceholder: "e.g. hotel, booking, plugin",

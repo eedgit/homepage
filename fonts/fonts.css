@@ -1,0 +1,26 @@
+/*
+  Schriften für jakuschin.de – lokal eingebunden, damit beim Seitenaufruf keine Daten an Google gehen.
+  Alle drei Schriften stehen unter der SIL Open Font License 1.1 (Lizenztexte in diesem Ordner).
+  Quelle: github.com/google/fonts
+*/
+@font-face{
+  font-family:"Bricolage Grotesque";
+  src:url("bricolage-grotesque.woff2") format("woff2");
+  font-weight:400 800;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Source Sans 3";
+  src:url("source-sans-3.woff2") format("woff2");
+  font-weight:200 900;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"JetBrains Mono";
+  src:url("jetbrains-mono.woff2") format("woff2");
+  font-weight:400 600;
+  font-style:normal;
+  font-display:swap;
+}

@@ -2,7 +2,7 @@
 
 Ein Filtermodul für Projekt-Referenzen in reinem JavaScript: Facettenfilter mit Trefferzahlen, Suche, Sortierung und Pagination, ohne Seitenreload.
 
-Das Modul ist eine eigenständige Neuumsetzung meines IHK-Abschlussprojekts. Im Original lief es als WordPress-Plugin mit REST-API und `WP_Query`. Diese Version kommt ohne CMS und ohne Server aus und läuft direkt auf GitHub Pages. Alle Projekte in `data/projects.json` sind fiktive Beispieldaten.
+Das Modul ist eine eigenständige Neuumsetzung meines Filtermoduls. Im Original lief es als WordPress-Plugin mit REST-API und `WP_Query`. Diese Version kommt ohne CMS und ohne Server aus und läuft direkt auf GitHub Pages. Alle Projekte in `data/projects.json` sind fiktive Beispieldaten.
 
 ## Aufbau
 

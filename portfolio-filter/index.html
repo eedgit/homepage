@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Portfolio-Filter</title>
 <meta name="description" content="Live-Demo: Portfolio-Filter in reinem JavaScript mit Facetten, Suche, Sortierung und Pagination.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../fonts/fonts.css">
 <style>
 :root{
   --bg:#F4F7F7; --surface:#FFFFFF; --ink:#13232A; --muted:#55666D; --line:#DCE4E5;
@@ -72,7 +70,7 @@ p{margin:0}
 .field input,.field select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
 .field input:focus,.field select:focus{border-color:var(--accent)}
 .facets{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.facet{border:0;margin:0;padding:0;display:grid;gap:10px;min-width:0}
+.facet{border:0;margin:0;padding:0;display:grid;gap:10px;min-width:0;align-content:start}
 .facet legend{padding:0;margin-bottom:10px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{display:inline-flex;align-items:center;gap:8px;font:600 .9rem var(--font-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 8px 6px 14px;cursor:pointer;transition:background .15s, border-color .15s}
@@ -143,7 +141,7 @@ footer nav{display:flex;gap:18px}
   <section class="intro" aria-labelledby="pf-title">
     <span class="eyebrow" data-t="eyebrow">Live-Demo</span>
     <h1 id="pf-title">Portfolio-Filter</h1>
-    <p data-t="intro">Projekte nach Typ, Branche und Technologie filtern, durchsuchen und sortieren, ohne dass die Seite neu lädt. Eine eigenständige Neuumsetzung meines IHK-Abschlussprojekts in reinem JavaScript, ohne WordPress.</p>
+    <p data-t="intro">Projekte nach Typ, Branche und Technologie filtern, durchsuchen und sortieren, ohne dass die Seite neu lädt. Eine eigenständige Neuumsetzung meines Filtermoduls in reinem JavaScript, ohne WordPress.</p>
     <div class="stack"><span>Vanilla JavaScript</span><span>Fetch API</span><span>AbortController</span><span>Debounce</span><span>aria-live</span></div>
     <span class="sample" data-t="sample">Alle Projekte sind fiktive Beispieldaten.</span>
   </section>
